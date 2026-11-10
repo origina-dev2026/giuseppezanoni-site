@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Attiva le animazioni solo se il JavaScript è disponibile -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- SEO -->
+  <title>Giuseppe Zanoni — Autore | Libri e Biografia</title>
+  <meta name="description" content="Giuseppe Zanoni: libri per bambini ambientati nella laguna di Venezia e thriller geopolitici della serie BLACKFRAME. Scopri le opere e acquistale su Amazon." />
+  <link rel="canonical" href="https://giuseppezanoni.it/" />
+  <meta name="theme-color" content="#2c3e50" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Giuseppe Zanoni" />
+  <meta property="og:title" content="Giuseppe Zanoni — Autore | Libri e Biografia" />
+  <meta property="og:description" content="Dalle lagune di Venezia ai thriller geopolitici." />
+  <meta property="og:url" content="https://giuseppezanoni.it/" />
+  <!-- SOSTITUIRE: aggiungi <meta property="og:image" content="https://giuseppezanoni.it/og-image.jpg"> quando hai un'immagine 1200x630 -->
+
+  <!-- Google Fonts: Inter (titoli) + Lora (testi lunghi) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================
+       VARIABILI DI COLORE E STILE
+       Per cambiare la palette, modifica solo questo blocco.
+       ========================================================== */
+    :root {
+      --bg: #fdfbf6;          /* crema */
+      --bg-alt: #f5f1e8;      /* crema più scuro per sezioni alternate */
+      --ink: #1f2a36;         /* testo principale */
+      --muted: #5b6672;       /* testo secondario */
+      --laguna: #2c3e50;      /* blu laguna desaturato */
+      --oro: #c9a227;         /* oro caldo per le CTA */
+      --line: #e6e0d2;
+      --radius: 12px;
+      --max: 1120px;
+    }
+
+    /* ---------- RESET E BASE ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Lora", Georgia, "Times New Roman", serif;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--laguna);
+      line-height: 1.2;
+      margin: 0 0 0.5em;
+    }
+    p { margin: 0 0 1rem; }
+    a { color: var(--laguna); }
+    img { max-width: 100%; display: block; }
+    section { padding: 6rem 0; scroll-margin-top: 72px; }
+    .section-alt { background: var(--bg-alt); }
+    .container { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+
+    .eyebrow {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 1rem;
+      background: var(--laguna);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      z-index: 200;
+    }
+    .skip-link:focus { left: 1rem; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--laguna);
+      outline-offset: 3px;
+    }
+
+    /* ---------- BARRA DI AVANZAMENTO ---------- */
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0;
+      background: var(--oro);
+      z-index: 150;
+    }
+
+    /* ---------- BOTTONI ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-gold { background: var(--oro); color: #1f2a36; }
+    .btn-gold:hover { background: #d8b03a; transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--laguna); border-color: var(--laguna); }
+    .btn-ghost:hover { background: var(--laguna); color: #fff; }
+
+    /* ---------- HEADER / NAV ---------- */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: transparent;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(253, 251, 246, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--laguna);
+      text-decoration: none;
+    }
+    .nav { display: flex; align-items: center; gap: 2rem; }
+    .nav .link {
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav .link:hover { color: var(--laguna); text-decoration: underline; text-underline-offset: 6px; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      padding: 0.5rem;
+      color: var(--laguna);
+      cursor: pointer;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 8rem 0 5rem;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(44, 62, 80, 0.14), transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(201, 162, 39, 0.20), transparent 50%),
+        linear-gradient(180deg, #fdfbf6 0%, #eaf0f3 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent 0 38px, rgba(44, 62, 80, 0.05) 38px 39px);
+      pointer-events: none;
+      transform: translateY(var(--parallax, 0px));
+    }
+    .hero-inner { position: relative; max-width: 760px; }
+    .hero h1 {
+      font-size: clamp(2.75rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3em;
+    }
+    .hero .subtitle {
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scroll-hint span {
+      width: 1px;
+      height: 36px;
+      background: var(--muted);
+      animation: hint 2s ease-in-out infinite;
+      transform-origin: top;
+    }
+    @keyframes hint {
+      0% { transform: scaleY(0); }
+      50% { transform: scaleY(1); }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
+    /* ---------- REVEAL AL SCORRIMENTO ---------- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition-delay: var(--delay, 0ms);
+    }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- BIOGRAFIA ---------- */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .bio-visual { position: sticky; top: 120px; }
+    .bio-text .lead {
+      font-size: 1.45rem;
+      font-style: italic;
+      color: var(--laguna);
+    }
+    .bio-text .more-link { font-family: "Inter", sans-serif; font-weight: 600; }
+    .photo-placeholder {
+      aspect-ratio: 4 / 5;
+      border: 2px dashed #b9c2cb;
+      border-radius: var(--radius);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-family: "Inter", sans-serif;
+      font-size: 0.9rem;
+    }
+    .photo-placeholder svg { width: 64px; height: 64px; opacity: 0.6; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+    }
+    .stat strong {
+      display: block;
+      font-family: "Inter", sans-serif;
+      font-size: 1.8rem;
+      color: var(--laguna);
+      line-height: 1.1;
+    }
+    .stat span { font-family: "Inter", sans-serif; font-size: 0.8rem; color: var(--muted); }
+
+    /* ---------- LIBRI: STORIA A SCORRIMENTO ---------- */
+    .story {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 4rem;
+      margin-top: 2rem;
+    }
+    .story-side {
+      position: sticky;
+      top: 120px;
+      align-self: start;
+    }
+    .story-counter {
+      font-family: "Inter", sans-serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .story-counter strong { color: var(--laguna); font-size: 1.6rem; }
+    .story-list { list-style: none; padding: 0; margin: 0; }
+    .story-list li { margin-bottom: 0.4rem; }
+    .story-list a {
+      display: block;
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.45rem 0 0.45rem 1rem;
+      border-left: 2px solid var(--line);
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .story-list a.current { color: var(--laguna); border-left-color: var(--oro); font-weight: 600; }
+    .story-steps { display: flex; flex-direction: column; gap: 6vh; }
+    .step {
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem;
+      opacity: 0.45;
+      transition: opacity 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
+    }
+    .step.is-active {
+      opacity: 1;
+      box-shadow: 0 18px 40px -22px rgba(31, 42, 54, 0.35);
+    }
+    .js .step:not(.is-active) { transform: scale(0.985); }
+    .step .cover {
+      aspect-ratio: 3 / 2;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #dfe6ec, #c9d3dc);
+      display: grid;
+      place-items: center;
+      color: var(--laguna);
+      margin-bottom: 1.5rem;
+    }
+    .step .cover svg { width: 56px; height: 56px; opacity: 0.7; }
+    .badge {
+      align-self: flex-start;
+      font-family: "Inter", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.9rem;
+    }
+    .badge-bambini   { background: #fbf1cf; color: #6b5210; }
+    .badge-thriller  { background: #e3e9f0; color: #2c3e50; }
+    .badge-romance   { background: #f6e3e3; color: #7a2e2e; }
+    .badge-narrativa { background: #e2efec; color: #22524a; }
+    .step h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+    .step .desc {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0 0 1.5rem;
+      max-width: 52ch;
+    }
+    .step .btn { align-self: flex-start; }
+    .lang-switch {
+      display: inline-flex;
+      align-self: flex-start;
+      border: 1px solid var(--laguna);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: -0.25rem 0 1rem;
+    }
+    .lang-switch button {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.8rem;
+      border: 0;
+      background: #fff;
+      color: var(--laguna);
+      cursor: pointer;
+    }
+    .lang-switch button.active { background: var(--laguna); color: #fff; }
+    .lang-switch button:focus-visible { outline-offset: -3px; }
+
+    /* ---------- CONTATTI ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-form .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .contact-form label {
+      font-family: "Inter", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--laguna);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      font: inherit;
+      font-size: 1rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid #cdd4db;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .contact-form textarea { min-height: 150px; resize: vertical; }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--laguna);
+      box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.35);
+    }
+    .form-status {
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+      color: var(--laguna);
+      min-height: 1.5em;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer {
+      background: var(--laguna);
+      color: #e9edf1;
+      padding: 3rem 0;
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-social { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .footer-social a { color: #fff; text-decoration: none; }
+    .footer-social a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .footer-inner p { margin: 0; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 960px) {
+      .story { grid-template-columns: 1fr; }
+      .story-side { display: none; }
+    }
+    @media (max-width: 860px) {
+      .nav-toggle { display: block; }
+      .nav {
+        position: absolute;
+        top: 72px;
+        left: 0; right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1.5rem;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav.open { display: flex; }
+      .nav .link { padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+      .nav .btn { margin-top: 1rem; }
+      .bio-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .bio-visual { position: static; }
+      .photo-placeholder { aspect-ratio: 16 / 10; }
+      .scroll-hint { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4.5rem 0; }
+      .hero { padding-top: 7rem; }
+      .step { min-height: auto; padding: 1.5rem; }
+      .stats { grid-template-columns: 1fr 1fr 1fr; }
+      .stat strong { font-size: 1.4rem; }
+    }
+
+    /* Rispetta chi preferisce meno animazioni */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .js .step:not(.is-active) { transform: none; }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <!-- ==========================================================
+       A. HEADER / NAV
+       ========================================================== -->
+  <header class="site-header" id="header">
+    <div class="container nav-wrap">
+      <a href="#top" class="logo" aria-label="Giuseppe Zanoni, torna all'inizio">Giuseppe Zanoni</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Apri o chiudi il menu" aria-expanded="false" aria-controls="nav-principale">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <nav class="nav" id="nav-principale" aria-label="Navigazione principale">
+        <a class="link" href="#top">Home</a>
+        <a class="link" href="#biografia">Biografia</a>
+        <a class="link" href="#libri">Libri</a>
+        <a class="link" href="#contatti">Contatti</a>
+        <!-- Link profilo Amazon autore (già inserito) -->
+        <a class="btn btn-gold" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Amazon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ==========================================================
+         B. HERO
+         ========================================================== -->
+    <section class="hero" id="hero" aria-labelledby="titolo-hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Scrittore · noto anche come «Lo Zio Beppe»</p>
+        <h1 id="titolo-hero">Giuseppe Zanoni</h1>
+        <p class="subtitle">Dalle lagune di Venezia ai thriller geopolitici.</p>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#libri">Scopri i libri</a>
+          <a class="btn btn-ghost" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Visita Amazon</a>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#biografia" aria-label="Scorri verso la biografia"><span aria-hidden="true"></span>Scorri</a>
+    </section>
+
+    <!-- ==========================================================
+         C. BIOGRAFIA
+         Il testo è quello fornito. Il riquadro foto resta fermo mentre scorri il testo.
+         ========================================================== -->
+    <section id="biografia" aria-labelledby="titolo-bio">
+      <div class="container bio-grid">
+        <div class="bio-visual">
+          <!-- SOSTITUIRE CON FOTO DI GIUSEPPE ZANONI: sostituisci questo div con <img src="giuseppe.jpg" alt="Giuseppe Zanoni"> -->
+          <div class="photo-placeholder reveal" role="img" aria-label="Segnaposto per la foto dell'autore">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke-linecap="round" />
+            </svg>
+            <span>Foto dell'autore</span>
+          </div>
+          <div class="stats" aria-label="Numeri dell'autore">
+            <div class="stat reveal"><strong data-count="5">5</strong><span>opere</span></div>
+            <div class="stat reveal" style="--delay: 120ms"><strong data-count="2">2</strong><span>mondi narrativi</span></div>
+            <div class="stat reveal" style="--delay: 240ms"><strong data-count="3">3</strong><span>lingue per Leo</span></div>
+          </div>
+        </div>
+
+        <div class="bio-text">
+          <p class="eyebrow reveal">Biografia</p>
+          <h2 class="section-title reveal" id="titolo-bio">L'autore</h2>
+
+          <p class="lead reveal">Ingegnere software di formazione, Giuseppe Zanoni costruisce mondi.</p>
+          <p class="reveal">Ha sviluppato due voci letterarie distinte: da un lato libri per bambini ambientati nella laguna di Venezia, con animali parlanti e colori vividi; dall'altro thriller geopolitici della serie BLACKFRAME, dove algoritmi, mercati finanziari e strutture di potere invisibili si intrecciano.</p>
+          <p class="reveal">Il filo conduttore è Venezia, presente in tutta la sua opera come un canale silenzioso.</p>
+          <p class="reveal">Scrive per i curiosi: bambini che vogliono capire il mondo e adulti che sospettano che il mondo sia più complicato di quanto sembri.</p>
+
+          <p class="reveal"><a class="more-link" href="#libri">Scopri le sue opere →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         D. LIBRI — storia a scorrimento
+         Ogni libro è un passo. Il libro attivo si evidenzia mentre scorri.
+         Per sostituire un link: cerca "SOSTITUIRE CON LINK AMAZON".
+         Per sostituire una copertina: cerca "SOSTITUIRE CON COPERTINA".
+         ========================================================== -->
+    <section id="libri" class="section-alt" aria-labelledby="titolo-libri">
+      <div class="container">
+        <p class="eyebrow reveal">Bibliografia</p>
+        <h2 class="section-title reveal" id="titolo-libri">Le Opere</h2>
+
+        <div class="story">
+          <aside class="story-side" aria-label="Indice delle opere">
+            <div class="story-counter"><strong id="story-num">01</strong> / 05</div>
+            <ol class="story-list" id="story-list">
+              <li><a href="#libro-1" data-target="0">Leo il piccolo granchio e il segreto della laguna</a></li>
+              <li><a href="#libro-2" data-target="1">Il protocollo ombra</a></li>
+              <li><a href="#libro-3" data-target="2">Fondamenta</a></li>
+              <li><a href="#libro-4" data-target="3">L'Usignolo di Rialto</a></li>
+              <li><a href="#libro-5" data-target="4">Tecnicamente è colpa del gatto</a></li>
+            </ol>
+          </aside>
+
+          <div class="story-steps">
+
+            <!-- Libro 1 -->
+            <article class="step" id="libro-1">
+              <!-- SOSTITUIRE CON COPERTINA DI LEO THE LITTLE CRAB: sostituisci il div .cover con <img src="images/leo.jpg" alt="Copertina di Leo il piccolo granchio"> -->
+              <div class="cover" role="img" aria-label="Copertina segnaposto di Leo il piccolo granchio">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z" />
+                  <path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z" />
+                </svg>
+              </div>
+              <span class="badge badge-bambini">Libro per bambini</span>
+              <h3 class="book-title" data-it="Leo il piccolo granchio e il segreto della laguna" data-en="Leo the Little Crab and the Secret of the Lagoon">Leo il piccolo granchio e il segreto della laguna</h3>
+              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
+                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
+                <button type="button" aria-pressed="false" data-lang="en">EN</button>
+              </div>
+              <p class="desc" data-it="Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna." data-en="Leo is a curious little crab who, one morning, discovers a secret hidden in the lagoon's waters.">Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna.</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI LEO THE LITTLE CRAB -->
+              <a class="btn btn-gold" href="#" aria-label="Acquista Leo il piccolo granchio su Amazon">Acquista su Amazon</a>
+            </article>
+
+            <!-- Libro 2 -->
+            <article class="step" id="libro-2">
+              <!-- SOSTITUIRE CON COPERTINA DI THE SHADOW PROTOCOL: sostituisci il div .cover con <img src="images/shadow-protocol.jpg" alt="Copertina di Il protocollo ombra"> -->
+              <div class="cover" role="img" aria-label="Copertina segnaposto di Il protocollo ombra">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z" />
+                </svg>
+              </div>
+              <span class="badge badge-thriller">Thriller geopolitico · BLACKFRAME</span>
+              <h3 class="book-title" data-it="Il protocollo ombra" data-en="The Shadow Protocol">Il protocollo ombra</h3>
+              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
+                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
+                <button type="button" aria-pressed="false" data-lang="en">EN</button>
+              </div>
+              <p class="desc" data-it="Un algoritmo finanziario scompare dai radar e lascia dietro di sé una scia di domande. Chi lo ha costruito, e per quale scopo?" data-en="A financial algorithm vanishes from the radar and leaves behind a trail of questions. Who built it, and for what purpose?">Un algoritmo finanziario scompare dai radar e lascia dietro di sé una scia di domande. Chi lo ha costruito, e per quale scopo?</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI THE SHADOW PROTOCOL -->
+              <a class="btn btn-gold" href="#" aria-label="Acquista Il protocollo ombra su Amazon">Acquista su Amazon</a>
+            </article>
+
+            <!-- Libro 3 -->
+            <article class="step" id="libro-3">
+              <!-- SOSTITUIRE CON COPERTINA DI FOUNDATIONS: sostituisci il div .cover con <img src="images/foundations.jpg" alt="Copertina di Fondamenta"> -->
+              <div class="cover" role="img" aria-label="Copertina segnaposto di Fondamenta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10h20L12 3z" />
+                </svg>
+              </div>
+              <span class="badge badge-thriller">Thriller geopolitico · BLACKFRAME</span>
+              <h3 class="book-title" data-it="Fondamenta" data-en="Foundations">Fondamenta</h3>
+              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
+                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
+                <button type="button" aria-pressed="false" data-lang="en">EN</button>
+              </div>
+              <p class="desc" data-it="Le fondamenta di un sistema di potere invisibile iniziano a incrinarsi, una verità alla volta." data-en="The foundations of an invisible system of power begin to crack, one truth at a time.">Le fondamenta di un sistema di potere invisibile iniziano a incrinarsi, una verità alla volta.</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI FOUNDATIONS -->
+              <a class="btn btn-gold" href="#" aria-label="Acquista Fondamenta su Amazon">Acquista su Amazon</a>
+            </article>
+
+            <!-- Libro 4 (solo italiano: nessuno switch lingua) -->
+            <article class="step" id="libro-4">
+              <!-- SOSTITUIRE CON COPERTINA DI L'USIGNOLO DI RIALTO: sostituisci il div .cover con <img src="images/usignolo-rialto.jpg" alt="Copertina di L'Usignolo di Rialto"> -->
+              <div class="cover" role="img" aria-label="Copertina segnaposto di L'Usignolo di Rialto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 20c4-6 12-6 16 0M12 4c-3 0-5 2-5 5 0 3 5 7 5 7s5-4 5-7c0-3-2-5-5-5z" />
+                </svg>
+              </div>
+              <span class="badge badge-romance">Commedia romantica veneziana</span>
+              <h3 class="book-title">L'Usignolo di Rialto</h3>
+              <p class="desc">Tra campi, ponti e caffè affacciati sul Canal Grande, un incontro inatteso cambia il ritmo di una giornata d'estate.</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI L'USIGNOLO DI RIALTO -->
+              <a class="btn btn-gold" href="#" aria-label="Acquista L'Usignolo di Rialto su Amazon">Acquista su Amazon</a>
+            </article>
+
+            <!-- Libro 5 -->
+            <article class="step" id="libro-5">
+              <!-- SOSTITUIRE CON COPERTINA DI TECHNICALLY, IT'S THE CAT'S FAULT: sostituisci il div .cover con <img src="images/cats-fault.jpg" alt="Copertina di Tecnicamente è colpa del gatto"> -->
+              <div class="cover" role="img" aria-label="Copertina segnaposto di Tecnicamente è colpa del gatto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 20V10l3-6 3 4h4l3-4 3 6v10z" />
+                </svg>
+              </div>
+              <span class="badge badge-narrativa">Narrativa</span>
+              <h3 class="book-title" data-it="Tecnicamente è colpa del gatto" data-en="Technically, It's the Cat's Fault">Tecnicamente è colpa del gatto</h3>
+              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
+                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
+                <button type="button" aria-pressed="false" data-lang="en">EN</button>
+              </div>
+              <p class="desc" data-it="Un incidente domestico, una spiegazione fin troppo logica e una catena di malintesi. Quando ci sono di mezzo i gatti, nulla è davvero colpa di chi si pensa." data-en="A household mishap, an overly logical explanation and a chain of misunderstandings. When cats are involved, nothing is really anyone's fault.">Un incidente domestico, una spiegazione fin troppo logica e una catena di malintesi. Quando ci sono di mezzo i gatti, nulla è davvero colpa di chi si pensa.</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI TECHNICALLY, IT'S THE CAT'S FAULT -->
+              <a class="btn btn-gold" href="#" aria-label="Acquista Tecnicamente è colpa del gatto su Amazon">Acquista su Amazon</a>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         E. CONTATTI
+         ========================================================== -->
+    <section id="contatti" aria-labelledby="titolo-contatti">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow reveal">Contatti</p>
+          <h2 class="section-title reveal" id="titolo-contatti">Scrivi all'autore</h2>
+          <p class="reveal">Per domande, collaborazioni o incontri con i lettori, lascia un messaggio.</p>
+        </div>
+
+        <!-- MODULO CONTATTI
+             Il form apre il programma di posta del visitatore con il messaggio già compilato,
+             indirizzato a 88.beppe@gmail.com (vedi lo script in fondo alla pagina).
+             Per invio diretto senza programma di posta, collegare Formspree o un servizio Aruba:
+             imposta action="IL_TUO_ENDPOINT" e method="POST", poi elimina il blocco "form-contatti" nello script. -->
+        <form class="contact-form reveal" id="form-contatti" aria-describedby="form-stato">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold" aria-label="Invia il messaggio">Invia messaggio</button>
+          <p class="form-status" id="form-stato" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================
+       F. FOOTER
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="anno">2026</span> Giuseppe Zanoni. Tutti i diritti riservati.</p>
+
+      <nav class="footer-social" aria-label="Profili social">
+        <a href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">Instagram</a>
+        <a href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">Facebook</a>
+        <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">LinkedIn</a>
+        <a href="curriculum.html" aria-label="Curriculum professionale di Giuseppe Zanoni">Curriculum</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    /* ==========================================================
+       JAVASCRIPT VANILLA — nessuna libreria esterna
+       ========================================================== */
+    (function () {
+      'use strict';
+
+      var riduciMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 1. Anno corrente nel footer
+      document.getElementById('anno').textContent = new Date().getFullYear();
+
+      // 2. Header solido, barra di avanzamento e leggero parallasse dell'hero
+      var header = document.getElementById('header');
+      var progress = document.getElementById('progress');
+      var hero = document.getElementById('hero');
+
+      function aggiornaScroll() {
+        var y = window.scrollY;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        header.classList.toggle('scrolled', y > 40);
+        progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+        if (!riduciMovimento && y < window.innerHeight) {
+          hero.style.setProperty('--parallax', (y * 0.25) + 'px');
+        }
+      }
+      aggiornaScroll();
+      window.addEventListener('scroll', aggiornaScroll, { passive: true });
+
+      // 3. Menu mobile
+      var toggle = document.getElementById('nav-toggle');
+      var nav = document.getElementById('nav-principale');
+
+      function chiudiMenu() {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      toggle.addEventListener('click', function () {
+        var aperto = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(aperto));
+      });
+
+      // 4. Smooth scroll sui link interni; i "#" placeholder vengono ignorati
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var id = link.getAttribute('href');
+          if (id.length < 2) return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: riduciMovimento ? 'auto' : 'smooth', block: 'start' });
+          chiudiMenu();
+        });
+      });
+
+      // 5. Elementi che compaiono scorrendo (.reveal)
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !riduciMovimento) {
+        var revealObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              revealObs.unobserve(entry.target);
+              // Contatori: conta fino al valore indicato
+              entry.target.querySelectorAll('[data-count]').forEach(contaFino);
+            }
+          });
+        }, { threshold: 0.2 });
+        reveals.forEach(function (el) { revealObs.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // 6. Contatore animato per le statistiche
+      function contaFino(el) {
+        if (el.dataset.done) return;
+        el.dataset.done = '1';
+        var fine = parseInt(el.getAttribute('data-count'), 10);
+        if (riduciMovimento) { el.textContent = fine; return; }
+        var inizio = 0;
+        var t0 = null;
+        function passo(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 900, 1);
+          el.textContent = Math.round(inizio + (fine - inizio) * p);
+          if (p < 1) requestAnimationFrame(passo);
+        }
+        requestAnimationFrame(passo);
+      }
+
+      // 7. Storia dei libri: evidenzia il libro attivo mentre scorri
+      var passi = Array.prototype.slice.call(document.querySelectorAll('.story-steps .step'));
+      var indice = document.querySelectorAll('#story-list a');
+      var numero = document.getElementById('story-num');
+
+      function attiva(i) {
+        passi.forEach(function (p, k) { p.classList.toggle('is-active', k === i); });
+        indice.forEach(function (a, k) {
+          var on = k === i;
+          a.classList.toggle('current', on);
+          if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+        numero.textContent = String(i + 1).padStart(2, '0');
+      }
+
+      if ('IntersectionObserver' in window) {
+        var storiaObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) attiva(passi.indexOf(entry.target));
+          });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        passi.forEach(function (p) { storiaObs.observe(p); });
+      }
+      attiva(0);
+
+      // 8. Form contatti: apre il programma di posta con il messaggio già compilato
+      //    verso 88.beppe@gmail.com. Quando colleghi Formspree o Aruba, elimina questo blocco.
+      var form = document.getElementById('form-contatti');
+      var stato = document.getElementById('form-stato');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nome = form.nome.value.trim();
+        var email = form.email.value.trim();
+        var messaggio = form.messaggio.value.trim();
+        var corpo = 'Nome: ' + nome + '\nEmail: ' + email + '\n\n' + messaggio;
+        window.location.href = 'mailto:88.beppe@gmail.com'
+          + '?subject=' + encodeURIComponent('Messaggio dal sito - ' + nome)
+          + '&body=' + encodeURIComponent(corpo);
+        stato.textContent = 'Si apre il tuo programma di posta con il messaggio pronto da inviare.';
+      });
+
+      // 9. Switch lingua sui libri disponibili in inglese (solo IT / EN)
+      document.querySelectorAll('.step .lang-switch').forEach(function (switcher) {
+        var card = switcher.closest('.step');
+        switcher.querySelectorAll('button').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var lang = btn.getAttribute('data-lang');
+            card.querySelectorAll('[data-it]').forEach(function (el) {
+              el.textContent = el.getAttribute('data-' + lang);
+            });
+            switcher.querySelectorAll('button').forEach(function (b) {
+              var attivo = b === btn;
+              b.classList.toggle('active', attivo);
+              b.setAttribute('aria-pressed', String(attivo));
+            });
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

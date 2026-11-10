@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- BOZZA: finché i dati non sono completi, la pagina non viene indicizzata.
+       Quando è pronta, elimina la riga "robots" qui sotto. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Giuseppe Zanoni — IT Manager | Curriculum</title>
+  <meta name="description" content="Curriculum professionale di Giuseppe Zanoni, IT Manager. Competenze, esperienze e contatti." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Giuseppe Zanoni — IT Manager | Curriculum" />
+  <meta property="og:description" content="Curriculum professionale di Giuseppe Zanoni, IT Manager." />
+  <meta property="og:url" content="https://www.TUODOMINIO.it/curriculum.html" /> <!-- SOSTITUIRE CON IL TUO DOMINIO -->
+  <meta name="theme-color" content="#2c3e50" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #fdfbf6;
+      --bg-alt: #f5f1e8;
+      --ink: #1f2a36;
+      --muted: #5b6672;
+      --laguna: #2c3e50;
+      --oro: #c9a227;
+      --line: #e6e0d2;
+      --max: 980px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Lora", Georgia, serif;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--laguna);
+      line-height: 1.2;
+      margin: 0 0 0.5em;
+    }
+    p { margin: 0 0 1rem; }
+    a { color: var(--laguna); }
+    .container { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--laguna);
+      outline-offset: 3px;
+    }
+
+    .top-bar {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+    }
+    .top-bar .container { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .top-bar a { text-decoration: none; font-weight: 600; }
+    .top-bar a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .hero { padding: 5rem 0 3.5rem; background: linear-gradient(180deg, #fdfbf6, #eaf0f3); }
+    .eyebrow {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 { font-size: clamp(2.5rem, 7vw, 4.25rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.2em; }
+    .hero .role { font-family: "Inter", sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 600; color: var(--muted); margin-bottom: 1.5rem; }
+    .hero .summary { font-style: italic; font-size: 1.2rem; max-width: 680px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      margin: 0.5rem 0.5rem 0 0;
+    }
+    .btn-gold { background: var(--oro); color: #1f2a36; }
+    .btn-gold:hover { background: #d8b03a; }
+    .btn-ghost { background: transparent; color: var(--laguna); border-color: var(--laguna); }
+    .btn-ghost:hover { background: var(--laguna); color: #fff; }
+
+    section { padding: 3.5rem 0; }
+    section.alt { background: var(--bg-alt); }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 700; }
+    .placeholder {
+      border: 2px dashed #b9c2cb;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      color: var(--muted);
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+    .exp { border-left: 3px solid var(--oro); padding: 0.25rem 0 0.25rem 1.25rem; margin-bottom: 1.75rem; }
+    .exp h3 { font-size: 1.1rem; margin-bottom: 0.2em; }
+    .exp .meta { font-family: "Inter", sans-serif; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 0.6rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+    .skills li {
+      font-family: "Inter", sans-serif;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--laguna);
+    }
+    .site-footer {
+      background: var(--laguna);
+      color: #e9edf1;
+      padding: 2.5rem 0;
+      font-family: "Inter", sans-serif;
+      font-size: 0.92rem;
+    }
+    .site-footer a { color: #fff; }
+    .site-footer p { margin: 0 0 0.5rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="container">
+      <a href="index.html">← Torna al sito dell'autore</a>
+      <a href="index.html#contatti">Contatti</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Curriculum professionale</p>
+      <h1>Giuseppe Zanoni</h1>
+      <p class="role">IT Manager</p>
+      <!-- Riepilogo: il testo sotto è una bozza. Sostituisci con la tua sintesi professionale. -->
+      <p class="summary">Ingegnere software di formazione, con esperienza nella gestione di sistemi, progetti tecnologici e team. Porta nel lavoro lo stesso metodo che usa per scrivere: struttura, precisione e attenzione ai dettagli.</p>
+      <!-- SOSTITUIRE: il file PDF del curriculum va caricato nella cartella del sito con questo nome -->
+      <a class="btn btn-gold" href="cv-giuseppe-zanoni.pdf" download>Scarica il CV (PDF)</a>
+      <a class="btn btn-ghost" href="index.html#contatti">Contattami</a>
+    </div>
+  </header>
+
+  <section aria-labelledby="titolo-profilo">
+    <div class="container">
+      <h2 class="section-title" id="titolo-profilo">Profilo</h2>
+      <!-- SOSTITUIRE: descrizione del ruolo e del perimetro di responsabilità -->
+      <div class="placeholder">[Da completare: descrizione del ruolo di IT Manager, dimensione del team, infrastrutture gestite, anni di esperienza]</div>
+    </div>
+  </section>
+
+  <section class="alt" aria-labelledby="titolo-competenze">
+    <div class="container">
+      <h2 class="section-title" id="titolo-competenze">Competenze</h2>
+      <!-- SOSTITUIRE: elenco delle competenze reali. Puoi aggiungere o togliere <li> -->
+      <ul class="skills">
+        <li>Gestione infrastrutture IT</li>
+        <li>Sicurezza informatica</li>
+        <li>Gestione dei fornitori</li>
+        <li>Pianificazione e budget</li>
+        <li>Team management</li>
+        <li>Sviluppo software</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="titolo-esperienza">
+    <div class="container">
+      <h2 class="section-title" id="titolo-esperienza">Esperienza</h2>
+      <!-- SOSTITUIRE: ripeti questo blocco per ogni incarico (dal più recente) -->
+      <article class="exp">
+        <h3>[Ruolo]</h3>
+        <p class="meta">[Azienda] · [Città] · [Anno inizio] – [Anno fine]</p>
+        <p>[Due o tre righe sui risultati ottenuti: progetti, team, budget, miglioramenti misurabili.]</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="alt" aria-labelledby="titolo-formazione">
+    <div class="container">
+      <h2 class="section-title" id="titolo-formazione">Formazione</h2>
+      <!-- SOSTITUIRE: titolo di studio e certificazioni -->
+      <article class="exp">
+        <h3>Laurea in Ingegneria [da confermare]</h3>
+        <p class="meta">[Università] · [Anno]</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="anno">2026</span> Giuseppe Zanoni</p>
+      <p><a href="index.html#contatti">Contatti</a> · <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('anno').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
