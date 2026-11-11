@@ -266,6 +266,23 @@
       color: var(--laguna);
     }
     .bio-text .more-link { font-family: "Inter", sans-serif; font-weight: 600; }
+    .author-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: var(--radius);
+    }
+    .scene { padding: 0 0 3.5rem; }
+    .scene-figure { margin: 0; }
+    .scene-figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
     .photo-placeholder {
       aspect-ratio: 4 / 5;
       border: 2px dashed #b9c2cb;
@@ -579,14 +596,7 @@
     <section id="biografia" aria-labelledby="titolo-bio">
       <div class="container bio-grid">
         <div class="bio-visual">
-          <!-- SOSTITUIRE CON FOTO DI GIUSEPPE ZANONI: sostituisci questo div con <img src="giuseppe.jpg" alt="Giuseppe Zanoni"> -->
-          <div class="photo-placeholder reveal" role="img" aria-label="Segnaposto per la foto dell'autore">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke-linecap="round" />
-            </svg>
-            <span>Foto dell'autore</span>
-          </div>
+          <img class="author-photo reveal" src="images/autore-ritratto.webp" alt="Ritratto in bianco e nero di Giuseppe Zanoni" loading="lazy" />
           <div class="stats" aria-label="Numeri dell'autore">
             <div class="stat reveal"><strong data-count="8">8</strong><span>opere</span></div>
             <div class="stat reveal" style="--delay: 120ms"><strong data-count="2">2</strong><span>mondi narrativi</span></div>
@@ -605,6 +615,14 @@
 
           <p class="reveal"><a class="more-link" href="#libri">Scopri le sue opere →</a></p>
         </div>
+      </div>
+    </section>
+
+    <section class="scene" aria-label="Dietro le pagine">
+      <div class="container">
+        <figure class="scene-figure reveal">
+          <img src="images/autore-scrivania.webp" alt="Giuseppe Zanoni seduto a una scrivania mentre scrive a mano su un foglio" loading="lazy" />
+        </figure>
       </div>
     </section>
 
