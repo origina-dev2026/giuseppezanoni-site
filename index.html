@@ -352,6 +352,25 @@
       transition: color 0.3s ease, border-color 0.3s ease;
     }
     .story-list a.current { color: var(--laguna); border-left-color: var(--oro); font-weight: 600; }
+    .story-list .story-group {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 1.25rem 0 0.5rem;
+    }
+    .story-list .story-group:first-child { margin-top: 0; }
+    .story-group-title {
+      font-family: "Inter", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0;
+    }
     .story-steps { display: flex; flex-direction: column; gap: 6vh; }
     .step {
       min-height: 62vh;
@@ -666,11 +685,13 @@
           <aside class="story-side" aria-label="Indice delle opere">
             <div class="story-counter"><strong id="story-num">01</strong> / 08</div>
             <ol class="story-list" id="story-list">
-              <li><a href="#libro-1" data-target="0">Leo il piccolo granchio e il segreto della laguna</a></li>
-              <li><a href="#libro-2" data-target="1">Il protocollo ombra</a></li>
-              <li><a href="#libro-3" data-target="2">Fondamenta</a></li>
-              <li><a href="#libro-4" data-target="3">L'Usignolo di Rialto</a></li>
-              <li><a href="#libro-5" data-target="4">Tecnicamente è colpa del gatto</a></li>
+              <li class="story-group">Racconti per adulti</li>
+              <li><a href="#libro-2" data-target="0">Il protocollo ombra</a></li>
+              <li><a href="#libro-3" data-target="1">Fondamenta</a></li>
+              <li><a href="#libro-4" data-target="2">L'Usignolo di Rialto</a></li>
+              <li><a href="#libro-5" data-target="3">Tecnicamente è colpa del gatto</a></li>
+              <li class="story-group">Fiabe per bambini</li>
+              <li><a href="#libro-1" data-target="4">Leo il piccolo granchio e il segreto della laguna</a></li>
               <li><a href="#libro-6" data-target="5">La montagna che russava</a></li>
               <li><a href="#libro-7" data-target="6">Storielle Veneziane da Colorare</a></li>
               <li><a href="#libro-8" data-target="7">Crescere con leggerezza</a></li>
@@ -678,24 +699,7 @@
           </aside>
 
           <div class="story-steps">
-
-            <!-- Libro 1 -->
-            <article class="step" id="libro-1">
-              <div class="cover">
-                <img src="images/leo.jpg" alt="Copertina di Leo il granchietto e il segreto della laguna" loading="lazy" />
-              </div>
-              <span class="badge badge-bambini">Libro per bambini</span>
-              <h3 class="book-title" data-it="Leo il piccolo granchio e il segreto della laguna" data-en="Leo the Little Crab and the Secret of the Lagoon">Leo il piccolo granchio e il segreto della laguna</h3>
-              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
-                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
-                <button type="button" aria-pressed="false" data-lang="en">EN</button>
-              </div>
-              <p class="desc" data-it="Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna." data-en="Leo is a curious little crab who, one morning, discovers a secret hidden in the lagoon's waters.">Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna.</p>
-              <!-- SOSTITUIRE CON LINK AMAZON DI LEO THE LITTLE CRAB -->
-              <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GSVSCVNT" target="_blank" rel="noopener" aria-label="Acquista Leo il granchietto e il segreto della laguna su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
-            </article>
-
-            <!-- Libro 2 -->
+            <p class="story-group-title" id="gruppo-adulti">Racconti per adulti</p>
             <article class="step" id="libro-2">
               <div class="cover">
                 <img src="images/shadow-protocol.jpg" alt="Copertina di Il protocollo ombra" loading="lazy" />
@@ -710,8 +714,6 @@
               <!-- SOSTITUIRE CON LINK AMAZON DI THE SHADOW PROTOCOL -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GSWV77FJ" target="_blank" rel="noopener" aria-label="Acquista Il protocollo ombra su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
-
-            <!-- Libro 3 -->
             <article class="step" id="libro-3">
               <div class="cover">
                 <img src="images/foundations.jpg" alt="Copertina di Fondamenta" loading="lazy" />
@@ -726,8 +728,6 @@
               <!-- SOSTITUIRE CON LINK AMAZON DI FOUNDATIONS -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GHNPGSY5" target="_blank" rel="noopener" aria-label="Acquista Fondamenta su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
-
-            <!-- Libro 4 (solo italiano: nessuno switch lingua) -->
             <article class="step" id="libro-4">
               <div class="cover">
                 <img src="images/usignolo-rialto.jpg" alt="Copertina di L'Usignolo di Rialto" loading="lazy" />
@@ -738,8 +738,6 @@
               <!-- SOSTITUIRE CON LINK AMAZON DI L'USIGNOLO DI RIALTO -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0HB4YG57R" target="_blank" rel="noopener" aria-label="Acquista L'Usignolo di Rialto su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
-
-            <!-- Libro 5 -->
             <article class="step" id="libro-5">
               <div class="cover">
                 <img src="images/cats-fault-it.jpg" data-it-src="images/cats-fault-it.jpg" data-en-src="images/cats-fault-en.jpg" alt="Copertina di Tecnicamente è colpa del gatto" loading="lazy" />
@@ -755,7 +753,21 @@
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0H9SXSRLN" data-it-href="https://www.amazon.it/dp/B0H9SXSRLN" data-en-href="https://www.amazon.it/dp/B0H9ZDZ8YV" target="_blank" rel="noopener" aria-label="Acquista Tecnicamente è colpa del gatto su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
 
-            <!-- Libro 6: aggiunto dalla pagina Amazon dell'autore -->
+            <p class="story-group-title" id="gruppo-fiabe">Fiabe per bambini</p>
+            <article class="step" id="libro-1">
+              <div class="cover">
+                <img src="images/leo.jpg" alt="Copertina di Leo il granchietto e il segreto della laguna" loading="lazy" />
+              </div>
+              <span class="badge badge-bambini">Libro per bambini</span>
+              <h3 class="book-title" data-it="Leo il piccolo granchio e il segreto della laguna" data-en="Leo the Little Crab and the Secret of the Lagoon">Leo il piccolo granchio e il segreto della laguna</h3>
+              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
+                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
+                <button type="button" aria-pressed="false" data-lang="en">EN</button>
+              </div>
+              <p class="desc" data-it="Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna." data-en="Leo is a curious little crab who, one morning, discovers a secret hidden in the lagoon's waters.">Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna.</p>
+              <!-- SOSTITUIRE CON LINK AMAZON DI LEO THE LITTLE CRAB -->
+              <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GSVSCVNT" target="_blank" rel="noopener" aria-label="Acquista Leo il granchietto e il segreto della laguna su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
+            </article>
             <article class="step" id="libro-6">
               <div class="cover">
                 <img src="images/montagna-che-russava.jpg" alt="Copertina di La montagna che russava" loading="lazy" />
@@ -766,8 +778,6 @@
               <p class="desc">Cento anni fa la montagna russò. A Roccasorda la piccola Brina, undici anni e orecchie finissime, è l'unica a sentire che il monte Dormiglione ha ricominciato a russare: quando russa, la neve viene giù.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0HB57CWRJ" target="_blank" rel="noopener" aria-label="Acquista La montagna che russava su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
-
-            <!-- Libro 7 -->
             <article class="step" id="libro-7">
               <div class="cover">
                 <img src="images/storielle-venezia-colorare.jpg" alt="Copertina di Storielle Veneziane da Colorare" loading="lazy" />
@@ -777,8 +787,6 @@
               <p class="desc">Venti storie magiche ambientate a Venezia, con pagine da colorare: un leone alato guardiano dei sogni, una gondola che vorrebbe volare.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GQS7P346" target="_blank" rel="noopener" aria-label="Acquista Storielle Veneziane da Colorare su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
-
-            <!-- Libro 8 -->
             <article class="step" id="libro-8">
               <div class="cover">
                 <img src="images/crescere-con-leggerezza.jpg" alt="Copertina di Crescere con leggerezza: storielle per bambini" loading="lazy" />
