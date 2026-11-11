@@ -490,6 +490,31 @@
       align-items: center;
       gap: 1.5rem;
     }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.75rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .social-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(44, 62, 80, 0.12); }
+    .social-card svg { width: 32px; height: 32px; color: var(--laguna); }
+    .social-card .platform { font-family: "Inter", sans-serif; font-weight: 700; color: var(--laguna); font-size: 1.05rem; }
+    .social-card .handle { font-family: "Inter", sans-serif; font-size: 0.9rem; color: var(--muted); }
+    .social-card p { margin: 0.25rem 0 0; font-size: 0.98rem; }
+    .social-card .go { margin-top: auto; padding-top: 0.75rem; font-family: "Inter", sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--laguna); }
+    @media (max-width: 800px) { .social-grid { grid-template-columns: 1fr; } }
     .footer-social { display: flex; gap: 1.25rem; flex-wrap: wrap; }
     .footer-social a { color: #fff; text-decoration: none; }
     .footer-social a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -765,6 +790,39 @@
             </article>
 
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         D2. SEGUIMI SUI SOCIAL
+         ========================================================== -->
+    <section class="section-alt" aria-labelledby="titolo-social">
+      <div class="container">
+        <p class="eyebrow reveal">Social</p>
+        <h2 class="section-title reveal" id="titolo-social">Seguimi</h2>
+        <div class="social-grid">
+          <a class="social-card reveal" href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" /></svg>
+            <span class="platform">Instagram</span>
+            <span class="handle">@giuseppezanoni.it</span>
+            <p>Le novità sui libri e gli aggiornamenti dalla laguna e dai thriller.</p>
+            <span class="go">Segui su Instagram →</span>
+          </a>
+          <a class="social-card reveal" style="--delay: 120ms" href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8.4v3h2.6V21h2.5Z" /></svg>
+            <span class="platform">Facebook</span>
+            <span class="handle">Beppeermejo</span>
+            <p>Il luogo dove condivido storie, presentazioni e incontri con i lettori.</p>
+            <span class="go">Seguici su Facebook →</span>
+          </a>
+          <a class="social-card reveal" style="--delay: 240ms" href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21h-4V9.75Z" /></svg>
+            <span class="platform">LinkedIn</span>
+            <span class="handle">giuseppezanoni</span>
+            <p>Il mio percorso professionale e le connessioni nel mondo tech.</p>
+            <span class="go">Connettiti su LinkedIn →</span>
+          </a>
         </div>
       </div>
     </section>
