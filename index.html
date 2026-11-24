@@ -8,8 +8,8 @@
   <script>document.documentElement.classList.add('js');</script>
 
   <!-- SEO -->
-  <title>Giuseppe Zanoni — Autore | Libri e Biografia</title>
-  <meta name="description" content="Giuseppe Zanoni: libri per bambini ambientati nella laguna di Venezia e thriller geopolitici della serie BLACKFRAME. Scopri le opere e acquistale su Amazon." />
+  <title data-i18n="meta.title">Giuseppe Zanoni — Autore | Libri e Biografia</title>
+  <meta name="description" data-i18n-content="meta.description" content="Giuseppe Zanoni: libri per bambini ambientati nella laguna di Venezia e thriller geopolitici della serie BLACKFRAME. Scopri le opere e acquistale su Amazon." />
   <link rel="canonical" href="https://giuseppezanoni.it/" />
   <meta name="theme-color" content="#2c3e50" />
 
@@ -159,7 +159,7 @@
       color: var(--laguna);
       text-decoration: none;
     }
-    .nav { display: flex; align-items: center; gap: 2rem; }
+    .nav { display: flex; align-items: center; gap: 2rem; margin-left: auto; }
     .nav .link {
       font-family: "Inter", sans-serif;
       font-size: 0.92rem;
@@ -176,6 +176,29 @@
       color: var(--laguna);
       cursor: pointer;
     }
+
+    /* ---------- SCELTA LINGUA (IT / EN / ES) ---------- */
+    .lang-picker {
+      display: inline-flex;
+      flex-shrink: 0;
+      margin-left: 2rem;
+      border: 1px solid var(--laguna);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .lang-picker button {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.75rem;
+      border: 0;
+      background: #fff;
+      color: var(--laguna);
+      cursor: pointer;
+    }
+    .lang-picker button.active { background: var(--laguna); color: #fff; }
+    .lang-picker button:focus-visible { outline-offset: -3px; }
 
     /* ---------- HERO ---------- */
     .hero {
@@ -434,27 +457,6 @@
       max-width: 52ch;
     }
     .step .btn { align-self: flex-start; }
-    .lang-switch {
-      display: inline-flex;
-      align-self: flex-start;
-      border: 1px solid var(--laguna);
-      border-radius: 999px;
-      overflow: hidden;
-      margin: -0.25rem 0 1rem;
-    }
-    .lang-switch button {
-      font-family: "Inter", sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 0.35rem 0.8rem;
-      border: 0;
-      background: #fff;
-      color: var(--laguna);
-      cursor: pointer;
-    }
-    .lang-switch button.active { background: var(--laguna); color: #fff; }
-    .lang-switch button:focus-visible { outline-offset: -3px; }
 
     /* ---------- CONTATTI ---------- */
     .contact-grid {
@@ -554,6 +556,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 0;
+        margin-left: 0;
         padding: 0.5rem 1.25rem 1.5rem;
         background: var(--bg);
         border-bottom: 1px solid var(--line);
@@ -561,6 +564,7 @@
       .nav.open { display: flex; }
       .nav .link { padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
       .nav .btn { margin-top: 1rem; }
+      .lang-picker { margin-left: auto; margin-right: 0.5rem; }
       .bio-grid,
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .bio-visual { position: static; }
@@ -589,30 +593,36 @@
 
   <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <a class="skip-link" href="#main">Vai al contenuto</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
 
   <!-- ==========================================================
        A. HEADER / NAV
        ========================================================== -->
   <header class="site-header" id="header">
     <div class="container nav-wrap">
-      <a href="#top" class="logo" aria-label="Giuseppe Zanoni, torna all'inizio">Giuseppe Zanoni</a>
+      <a href="#top" class="logo" data-i18n-aria="logo.aria" aria-label="Giuseppe Zanoni, torna all'inizio">Giuseppe Zanoni</a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Apri o chiudi il menu" aria-expanded="false" aria-controls="nav-principale">
+      <nav class="nav" id="nav-principale" data-i18n-aria="nav.aria" aria-label="Navigazione principale">
+        <a class="link" href="#top" data-i18n="nav.home">Home</a>
+        <a class="link" href="#biografia" data-i18n="nav.bio">Biografia</a>
+        <a class="link" href="#libri" data-i18n="nav.books">Libri</a>
+        <a class="link" href="#curriculum" data-i18n="nav.cv">Curriculum</a>
+        <a class="link" href="#contatti" data-i18n="nav.contact">Contatti</a>
+        <!-- Link profilo Amazon autore (già inserito) -->
+        <a class="btn btn-gold" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" data-i18n-aria="amazon.aria" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Amazon</a>
+      </nav>
+
+      <div class="lang-picker" role="group" aria-label="Language · Lingua · Idioma">
+        <button type="button" class="active" aria-pressed="true" data-set-lang="it">IT</button>
+        <button type="button" aria-pressed="false" data-set-lang="en">EN</button>
+        <button type="button" aria-pressed="false" data-set-lang="es">ES</button>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" data-i18n-aria="menu.aria" aria-label="Apri o chiudi il menu" aria-expanded="false" aria-controls="nav-principale">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
         </svg>
       </button>
-
-      <nav class="nav" id="nav-principale" aria-label="Navigazione principale">
-        <a class="link" href="#top">Home</a>
-        <a class="link" href="#biografia">Biografia</a>
-        <a class="link" href="#libri">Libri</a>
-        <a class="link" href="#curriculum">Curriculum</a>
-        <a class="link" href="#contatti">Contatti</a>
-        <!-- Link profilo Amazon autore (già inserito) -->
-        <a class="btn btn-gold" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Amazon</a>
-      </nav>
     </div>
   </header>
 
@@ -623,15 +633,15 @@
          ========================================================== -->
     <section class="hero" id="hero" aria-labelledby="titolo-hero">
       <div class="container hero-inner">
-        <p class="eyebrow">Scrittore · noto anche come «Lo Zio Beppe»</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Scrittore · noto anche come «Lo Zio Beppe»</p>
         <h1 id="titolo-hero">Giuseppe Zanoni</h1>
-        <p class="subtitle">Dalle lagune di Venezia ai thriller geopolitici.</p>
+        <p class="subtitle" data-i18n="hero.subtitle">Dalle lagune di Venezia ai thriller geopolitici.</p>
         <div class="hero-cta">
-          <a class="btn btn-gold" href="#libri">Scopri i libri</a>
-          <a class="btn btn-ghost" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Visita Amazon</a>
+          <a class="btn btn-gold" href="#libri" data-i18n="hero.discover">Scopri i libri</a>
+          <a class="btn btn-ghost" href="https://www.amazon.it/stores/giuseppe-zanoni/author/B0GR1PZ9BT" target="_blank" rel="noopener" data-i18n="hero.amazon" data-i18n-aria="amazon.aria" aria-label="Visita il profilo Amazon di Giuseppe Zanoni (si apre in una nuova scheda)">Visita Amazon</a>
         </div>
       </div>
-      <a class="scroll-hint" href="#biografia" aria-label="Scorri verso la biografia"><span aria-hidden="true"></span>Scorri</a>
+      <a class="scroll-hint" href="#biografia" data-i18n-aria="scroll.aria" aria-label="Scorri verso la biografia"><span aria-hidden="true"></span><span data-i18n="scroll.label">Scorri</span></a>
     </section>
 
     <!-- ==========================================================
@@ -641,32 +651,32 @@
     <section id="biografia" aria-labelledby="titolo-bio">
       <div class="container bio-grid">
         <div class="bio-visual">
-          <img class="author-photo reveal" src="images/autore-ritratto.webp" alt="Ritratto in bianco e nero di Giuseppe Zanoni" loading="lazy" />
-          <div class="stats" aria-label="Numeri dell'autore">
-            <div class="stat reveal"><strong data-count="9">9</strong><span>opere</span></div>
-            <div class="stat reveal" style="--delay: 120ms"><strong data-count="2">2</strong><span>mondi narrativi</span></div>
-            <div class="stat reveal" style="--delay: 240ms"><strong data-count="3">3</strong><span>lingue per Leo</span></div>
+          <img class="author-photo reveal" src="images/autore-ritratto.webp" alt="Ritratto in bianco e nero di Giuseppe Zanoni" data-i18n-alt="bio.photoAlt" loading="lazy" />
+          <div class="stats" data-i18n-aria="bio.statsAria" aria-label="Numeri dell'autore">
+            <div class="stat reveal"><strong data-count="9">9</strong><span data-i18n="bio.stat1">opere</span></div>
+            <div class="stat reveal" style="--delay: 120ms"><strong data-count="2">2</strong><span data-i18n="bio.stat2">mondi narrativi</span></div>
+            <div class="stat reveal" style="--delay: 240ms"><strong data-count="3">3</strong><span data-i18n="bio.stat3">lingue per Leo</span></div>
           </div>
         </div>
 
         <div class="bio-text">
-          <p class="eyebrow reveal">Biografia</p>
-          <h2 class="section-title reveal" id="titolo-bio">L'autore</h2>
+          <p class="eyebrow reveal" data-i18n="bio.eyebrow">Biografia</p>
+          <h2 class="section-title reveal" id="titolo-bio" data-i18n="bio.title">L'autore</h2>
 
-          <p class="lead reveal">IT Manager, Giuseppe Zanoni costruisce mondi.</p>
-          <p class="reveal">Ha sviluppato due voci letterarie distinte: da un lato libri per bambini ambientati nella laguna di Venezia, con animali parlanti e colori vividi; dall'altro thriller geopolitici della serie BLACKFRAME, dove algoritmi, mercati finanziari e strutture di potere invisibili si intrecciano.</p>
-          <p class="reveal">Il filo conduttore è Venezia, presente in tutta la sua opera come un canale silenzioso.</p>
-          <p class="reveal">Scrive per i curiosi: bambini che vogliono capire il mondo e adulti che sospettano che il mondo sia più complicato di quanto sembri.</p>
+          <p class="lead reveal" data-i18n="bio.lead">IT Manager, Giuseppe Zanoni costruisce mondi.</p>
+          <p class="reveal" data-i18n="bio.p1">Ha sviluppato due voci letterarie distinte: da un lato libri per bambini ambientati nella laguna di Venezia, con animali parlanti e colori vividi; dall'altro thriller geopolitici della serie BLACKFRAME, dove algoritmi, mercati finanziari e strutture di potere invisibili si intrecciano.</p>
+          <p class="reveal" data-i18n="bio.p2">Il filo conduttore è Venezia, presente in tutta la sua opera come un canale silenzioso.</p>
+          <p class="reveal" data-i18n="bio.p3">Scrive per i curiosi: bambini che vogliono capire il mondo e adulti che sospettano che il mondo sia più complicato di quanto sembri.</p>
 
-          <p class="reveal"><a class="more-link" href="#libri">Scopri le sue opere →</a></p>
+          <p class="reveal"><a class="more-link" href="#libri" data-i18n="bio.more">Scopri le sue opere →</a></p>
         </div>
       </div>
     </section>
 
-    <section class="scene" aria-label="Dietro le pagine">
+    <section class="scene" aria-label="Dietro le pagine" data-i18n-aria="scene.aria">
       <div class="container">
         <figure class="scene-figure reveal">
-          <img src="images/autore-scrivania.webp" alt="Giuseppe Zanoni seduto a una scrivania mentre scrive a mano su un foglio" loading="lazy" />
+          <img src="images/autore-scrivania.webp" alt="Giuseppe Zanoni seduto a una scrivania mentre scrive a mano su un foglio" data-i18n-alt="scene.alt" loading="lazy" />
         </figure>
       </div>
     </section>
@@ -676,81 +686,70 @@
          Ogni libro è un passo. Il libro attivo si evidenzia mentre scorri.
          Per sostituire un link: cerca "SOSTITUIRE CON LINK AMAZON".
          Per sostituire una copertina: cerca "SOSTITUIRE CON COPERTINA".
+         Le traduzioni dei testi sono in js/i18n.js.
          ========================================================== -->
     <section id="libri" class="section-alt" aria-labelledby="titolo-libri">
       <div class="container">
-        <p class="eyebrow reveal">Bibliografia</p>
-        <h2 class="section-title reveal" id="titolo-libri">Le Opere</h2>
+        <p class="eyebrow reveal" data-i18n="books.eyebrow">Bibliografia</p>
+        <h2 class="section-title reveal" id="titolo-libri" data-i18n="books.title">Le Opere</h2>
 
         <div class="story">
-          <aside class="story-side" aria-label="Indice delle opere">
+          <aside class="story-side" aria-label="Indice delle opere" data-i18n-aria="books.indexAria">
             <div class="story-counter"><strong id="story-num">01</strong> / 09</div>
             <ol class="story-list" id="story-list">
-              <li class="story-group">Racconti per adulti</li>
-              <li><a href="#libro-2" data-target="0">Il protocollo ombra</a></li>
-              <li><a href="#libro-3" data-target="1">Fondamenta</a></li>
+              <li class="story-group" data-i18n="group.adults">Racconti per adulti</li>
+              <li><a href="#libro-2" data-target="0" data-i18n="book.shadow">Il protocollo ombra</a></li>
+              <li><a href="#libro-3" data-target="1" data-i18n="book.foundations">Fondamenta</a></li>
               <li><a href="#libro-4" data-target="2">L'Usignolo di Rialto</a></li>
-              <li><a href="#libro-5" data-target="3">Tecnicamente è colpa del gatto</a></li>
+              <li><a href="#libro-5" data-target="3" data-i18n="book.cat">Tecnicamente è colpa del gatto</a></li>
               <li><a href="#libro-9" data-target="4">Il cielo di Mirano</a></li>
-              <li class="story-group">Fiabe per bambini</li>
-              <li><a href="#libro-1" data-target="5">Leo il piccolo granchio e il segreto della laguna</a></li>
+              <li class="story-group" data-i18n="group.kids">Fiabe per bambini</li>
+              <li><a href="#libro-1" data-target="5" data-i18n="book.leo">Leo il piccolo granchio e il segreto della laguna</a></li>
               <li><a href="#libro-6" data-target="6">La montagna che russava</a></li>
               <li><a href="#libro-7" data-target="7">Storielle Veneziane da Colorare</a></li>
-              <li><a href="#libro-8" data-target="8">Crescere con leggerezza</a></li>
+              <li><a href="#libro-8" data-target="8">Crescere con leggerezza: storielle per bambini</a></li>
             </ol>
           </aside>
 
           <div class="story-steps">
-            <p class="story-group-title" id="gruppo-adulti">Racconti per adulti</p>
+            <p class="story-group-title" id="gruppo-adulti" data-i18n="group.adults">Racconti per adulti</p>
             <article class="step" id="libro-2">
               <div class="cover">
-                <img src="images/shadow-protocol.jpg" alt="Copertina di Il protocollo ombra" loading="lazy" />
+                <img src="images/shadow-protocol.jpg" alt="Copertina di Il protocollo ombra" data-i18n-alt="cover.shadow" loading="lazy" />
               </div>
-              <span class="badge badge-thriller">Thriller geopolitico · BLACKFRAME</span>
-              <h3 class="book-title" data-it="Il protocollo ombra" data-en="The Shadow Protocol">Il protocollo ombra</h3>
-              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
-                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
-                <button type="button" aria-pressed="false" data-lang="en">EN</button>
-              </div>
-              <p class="desc" data-it="Un algoritmo finanziario scompare dai radar e lascia dietro di sé una scia di domande. Chi lo ha costruito, e per quale scopo?" data-en="A financial algorithm vanishes from the radar and leaves behind a trail of questions. Who built it, and for what purpose?">Un algoritmo finanziario scompare dai radar e lascia dietro di sé una scia di domande. Chi lo ha costruito, e per quale scopo?</p>
+              <span class="badge badge-thriller" data-i18n="badge.thriller">Thriller geopolitico · BLACKFRAME</span>
+              <h3 class="book-title" data-i18n="book.shadow">Il protocollo ombra</h3>
+              <p class="desc" data-i18n="desc.shadow">Un algoritmo finanziario scompare dai radar e lascia dietro di sé una scia di domande. Chi lo ha costruito, e per quale scopo?</p>
               <!-- SOSTITUIRE CON LINK AMAZON DI THE SHADOW PROTOCOL -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GSWV77FJ" target="_blank" rel="noopener" aria-label="Acquista Il protocollo ombra su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-3">
               <div class="cover">
-                <img src="images/foundations.jpg" alt="Copertina di Fondamenta" loading="lazy" />
+                <img src="images/foundations.jpg" alt="Copertina di Fondamenta" data-i18n-alt="cover.foundations" loading="lazy" />
               </div>
-              <span class="badge badge-thriller">Thriller geopolitico · BLACKFRAME</span>
-              <h3 class="book-title" data-it="Fondamenta" data-en="Foundations">Fondamenta</h3>
-              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
-                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
-                <button type="button" aria-pressed="false" data-lang="en">EN</button>
-              </div>
-              <p class="desc" data-it="Le fondamenta di un sistema di potere invisibile iniziano a incrinarsi, una verità alla volta." data-en="The foundations of an invisible system of power begin to crack, one truth at a time.">Le fondamenta di un sistema di potere invisibile iniziano a incrinarsi, una verità alla volta.</p>
+              <span class="badge badge-thriller" data-i18n="badge.thriller">Thriller geopolitico · BLACKFRAME</span>
+              <h3 class="book-title" data-i18n="book.foundations">Fondamenta</h3>
+              <p class="desc" data-i18n="desc.foundations">Le fondamenta di un sistema di potere invisibile iniziano a incrinarsi, una verità alla volta.</p>
               <!-- SOSTITUIRE CON LINK AMAZON DI FOUNDATIONS -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GHNPGSY5" target="_blank" rel="noopener" aria-label="Acquista Fondamenta su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-4">
               <div class="cover">
-                <img src="images/usignolo-rialto.jpg" alt="Copertina di L'Usignolo di Rialto" loading="lazy" />
+                <img src="images/usignolo-rialto.jpg" alt="Copertina di L'Usignolo di Rialto" data-i18n-alt="cover.usignolo" loading="lazy" />
               </div>
-              <span class="badge badge-romance">Commedia romantica veneziana</span>
+              <span class="badge badge-romance" data-i18n="badge.romance">Commedia romantica veneziana</span>
               <h3 class="book-title">L'Usignolo di Rialto</h3>
-              <p class="desc">Tra campi, ponti e caffè affacciati sul Canal Grande, un incontro inatteso cambia il ritmo di una giornata d'estate.</p>
+              <p class="desc" data-i18n="desc.usignolo">Tra campi, ponti e caffè affacciati sul Canal Grande, un incontro inatteso cambia il ritmo di una giornata d'estate.</p>
               <!-- SOSTITUIRE CON LINK AMAZON DI L'USIGNOLO DI RIALTO -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0HB4YG57R" target="_blank" rel="noopener" aria-label="Acquista L'Usignolo di Rialto su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-5">
               <div class="cover">
-                <img src="images/cats-fault-it.jpg" data-it-src="images/cats-fault-it.jpg" data-en-src="images/cats-fault-en.jpg" alt="Copertina di Tecnicamente è colpa del gatto" loading="lazy" />
+                <img src="images/cats-fault-it.jpg" data-it-src="images/cats-fault-it.jpg" data-en-src="images/cats-fault-en.jpg" alt="Copertina di Tecnicamente è colpa del gatto" data-i18n-alt="cover.cat" loading="lazy" />
               </div>
-              <span class="badge badge-narrativa">Vicino al fuoco · Narrativa</span>
-              <h3 class="book-title" data-it="Tecnicamente è colpa del gatto" data-en="Technically, It's the Cat's Fault">Tecnicamente è colpa del gatto</h3>
-              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
-                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
-                <button type="button" aria-pressed="false" data-lang="en">EN</button>
-              </div>
-              <p class="desc" data-it="Un incidente domestico, una spiegazione fin troppo logica e una catena di malintesi. Quando ci sono di mezzo i gatti, nulla è davvero colpa di chi si pensa." data-en="A household mishap, an overly logical explanation and a chain of misunderstandings. When cats are involved, nothing is really anyone's fault.">Un incidente domestico, una spiegazione fin troppo logica e una catena di malintesi. Quando ci sono di mezzo i gatti, nulla è davvero colpa di chi si pensa.</p>
+              <span class="badge badge-narrativa" data-i18n="badge.narrative">Vicino al fuoco · Narrativa</span>
+              <h3 class="book-title" data-i18n="book.cat">Tecnicamente è colpa del gatto</h3>
+              <p class="desc" data-i18n="desc.cat">Un incidente domestico, una spiegazione fin troppo logica e una catena di malintesi. Quando ci sono di mezzo i gatti, nulla è davvero colpa di chi si pensa.</p>
               <!-- SOSTITUIRE CON LINK AMAZON DI TECHNICALLY, IT'S THE CAT'S FAULT -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0H9SXSRLN" data-it-href="https://www.amazon.it/dp/B0H9SXSRLN" data-en-href="https://www.amazon.it/dp/B0H9ZDZ8YV" target="_blank" rel="noopener" aria-label="Acquista Tecnicamente è colpa del gatto su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
@@ -758,55 +757,51 @@
             <!-- Libro 9: collana adulti -->
             <article class="step" id="libro-9">
               <div class="cover">
-                <img src="images/il-cielo-di-mirano.jpg" alt="Copertina di Il cielo di Mirano" loading="lazy" />
+                <img src="images/il-cielo-di-mirano.jpg" alt="Copertina di Il cielo di Mirano" data-i18n-alt="cover.mirano" loading="lazy" />
               </div>
-              <span class="badge badge-romance">Vicino al fuoco · Commedia storica</span>
+              <span class="badge badge-romance" data-i18n="badge.history">Vicino al fuoco · Commedia storica</span>
               <h3 class="book-title">Il cielo di Mirano</h3>
-              <p class="desc">Mirano, 1761: un'oca impertinente e un secchio di calce fanno incontrare due vite che non dovevano incontrarsi. Una commedia veneta tra feste, nebbia e un segreto. Scritto con Raoul Lazzari.</p>
+              <p class="desc" data-i18n="desc.mirano">Mirano, 1761: un'oca impertinente e un secchio di calce fanno incontrare due vite che non dovevano incontrarsi. Una commedia veneta tra feste, nebbia e un segreto. Scritto con Raoul Lazzari.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0HS942PM2" target="_blank" rel="noopener" aria-label="Acquista Il cielo di Mirano su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
 
-            <p class="story-group-title" id="gruppo-fiabe">Fiabe per bambini</p>
+            <p class="story-group-title" id="gruppo-fiabe" data-i18n="group.kids">Fiabe per bambini</p>
             <article class="step" id="libro-1">
               <div class="cover">
-                <img src="images/leo.jpg" alt="Copertina di Leo il granchietto e il segreto della laguna" loading="lazy" />
+                <img src="images/leo.jpg" alt="Copertina di Leo il granchietto e il segreto della laguna" data-i18n-alt="cover.leo" loading="lazy" />
               </div>
-              <span class="badge badge-bambini">Libro per bambini</span>
-              <h3 class="book-title" data-it="Leo il piccolo granchio e il segreto della laguna" data-en="Leo the Little Crab and the Secret of the Lagoon">Leo il piccolo granchio e il segreto della laguna</h3>
-              <div class="lang-switch" role="group" aria-label="Lingua del titolo">
-                <button type="button" class="active" aria-pressed="true" data-lang="it">IT</button>
-                <button type="button" aria-pressed="false" data-lang="en">EN</button>
-              </div>
-              <p class="desc" data-it="Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna." data-en="Leo is a curious little crab who, one morning, discovers a secret hidden in the lagoon's waters.">Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna.</p>
+              <span class="badge badge-bambini" data-i18n="badge.kids">Libro per bambini</span>
+              <h3 class="book-title" data-i18n="book.leo">Leo il piccolo granchio e il segreto della laguna</h3>
+              <p class="desc" data-i18n="desc.leo">Leo è un piccolo granchio curioso che, una mattina, scopre un segreto nascosto tra le acque della laguna.</p>
               <!-- SOSTITUIRE CON LINK AMAZON DI LEO THE LITTLE CRAB -->
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GSVSCVNT" target="_blank" rel="noopener" aria-label="Acquista Leo il granchietto e il segreto della laguna su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-6">
               <div class="cover">
-                <img src="images/montagna-che-russava.jpg" alt="Copertina di La montagna che russava" loading="lazy" />
+                <img src="images/montagna-che-russava.jpg" alt="Copertina di La montagna che russava" data-i18n-alt="cover.montagna" loading="lazy" />
               </div>
-              <span class="badge badge-bambini">Libro per bambini</span>
+              <span class="badge badge-bambini" data-i18n="badge.kids">Libro per bambini</span>
               <h3 class="book-title">La montagna che russava</h3>
-              <p class="award">Vincitore, secondo posto al concorso nazionale «Il racconto nel cassetto», AssoAli, XXIII edizione 2026</p>
-              <p class="desc">Cento anni fa la montagna russò. A Roccasorda la piccola Brina, undici anni e orecchie finissime, è l'unica a sentire che il monte Dormiglione ha ricominciato a russare: quando russa, la neve viene giù.</p>
+              <p class="award" data-i18n="award.montagna">Vincitore, secondo posto al concorso nazionale «Il racconto nel cassetto», AssoAli, XXIII edizione 2026</p>
+              <p class="desc" data-i18n="desc.montagna">Cento anni fa la montagna russò. A Roccasorda la piccola Brina, undici anni e orecchie finissime, è l'unica a sentire che il monte Dormiglione ha ricominciato a russare: quando russa, la neve viene giù.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0HB57CWRJ" target="_blank" rel="noopener" aria-label="Acquista La montagna che russava su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-7">
               <div class="cover">
-                <img src="images/storielle-venezia-colorare.jpg" alt="Copertina di Storielle Veneziane da Colorare" loading="lazy" />
+                <img src="images/storielle-venezia-colorare.jpg" alt="Copertina di Storielle Veneziane da Colorare" data-i18n-alt="cover.storielle" loading="lazy" />
               </div>
-              <span class="badge badge-bambini">Libro per bambini · Da colorare</span>
+              <span class="badge badge-bambini" data-i18n="badge.coloring">Libro per bambini · Da colorare</span>
               <h3 class="book-title">Storielle Veneziane da Colorare</h3>
-              <p class="desc">Venti storie magiche ambientate a Venezia, con pagine da colorare: un leone alato guardiano dei sogni, una gondola che vorrebbe volare.</p>
+              <p class="desc" data-i18n="desc.storielle">Venti storie magiche ambientate a Venezia, con pagine da colorare: un leone alato guardiano dei sogni, una gondola che vorrebbe volare.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GQS7P346" target="_blank" rel="noopener" aria-label="Acquista Storielle Veneziane da Colorare su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
             <article class="step" id="libro-8">
               <div class="cover">
-                <img src="images/crescere-con-leggerezza.jpg" alt="Copertina di Crescere con leggerezza: storielle per bambini" loading="lazy" />
+                <img src="images/crescere-con-leggerezza.jpg" alt="Copertina di Crescere con leggerezza: storielle per bambini" data-i18n-alt="cover.crescere" loading="lazy" />
               </div>
-              <span class="badge badge-bambini">Libro per bambini</span>
+              <span class="badge badge-bambini" data-i18n="badge.kids">Libro per bambini</span>
               <h3 class="book-title">Crescere con leggerezza: storielle per bambini</h3>
-              <p class="desc">Storie per accompagnare i bambini nella scoperta di sé e del mondo, tra borghi incantati e paesaggi del Giappone, con Lila, Laura, Finn e Han.</p>
+              <p class="desc" data-i18n="desc.crescere">Storie per accompagnare i bambini nella scoperta di sé e del mondo, tra borghi incantati e paesaggi del Giappone, con Lila, Laura, Finn e Han.</p>
               <a class="btn btn-gold" href="https://www.amazon.it/dp/B0GQQ3H2Y5" target="_blank" rel="noopener" aria-label="Acquista Crescere con leggerezza su Amazon (si apre in una nuova scheda)">Acquista su Amazon</a>
             </article>
 
@@ -821,11 +816,11 @@
     <section id="curriculum" aria-labelledby="titolo-curriculum">
       <div class="container bio-grid">
         <div class="bio-text">
-          <p class="eyebrow reveal">Professione</p>
-          <h2 class="section-title reveal" id="titolo-curriculum">Curriculum</h2>
-          <p class="lead reveal">IT Manager e consulente di progetti tecnologici.</p>
-          <p class="reveal">Porto nel lavoro lo stesso metodo che uso per scrivere: struttura, precisione e attenzione ai dettagli.</p>
-          <p class="reveal"><a class="btn btn-ghost" href="curriculum.html">Leggi il curriculum</a></p>
+          <p class="eyebrow reveal" data-i18n="cv.eyebrow">Professione</p>
+          <h2 class="section-title reveal" id="titolo-curriculum" data-i18n="cv.title">Curriculum</h2>
+          <p class="lead reveal" data-i18n="cv.lead">IT Manager e consulente di progetti tecnologici.</p>
+          <p class="reveal" data-i18n="cv.p">Porto nel lavoro lo stesso metodo che uso per scrivere: struttura, precisione e attenzione ai dettagli.</p>
+          <p class="reveal"><a class="btn btn-ghost" href="curriculum.html" data-i18n="cv.btn">Leggi il curriculum</a></p>
         </div>
       </div>
     </section>
@@ -835,29 +830,29 @@
          ========================================================== -->
     <section class="section-alt" aria-labelledby="titolo-social">
       <div class="container">
-        <p class="eyebrow reveal">Social</p>
-        <h2 class="section-title reveal" id="titolo-social">Seguimi</h2>
+        <p class="eyebrow reveal" data-i18n="social.eyebrow">Social</p>
+        <h2 class="section-title reveal" id="titolo-social" data-i18n="social.title">Seguimi</h2>
         <div class="social-grid">
-          <a class="social-card reveal" href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">
+          <a class="social-card reveal" href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" data-social="Instagram" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" /></svg>
             <span class="platform">Instagram</span>
             <span class="handle">@giuseppezanoni.it</span>
-            <p>Dietro le quinte dei libri, la laguna di Venezia e le novità della serie BLACKFRAME.</p>
-            <span class="go">Segui su Instagram →</span>
+            <p data-i18n="social.ig.p">Dietro le quinte dei libri, la laguna di Venezia e le novità della serie BLACKFRAME.</p>
+            <span class="go" data-i18n="social.ig.go">Segui su Instagram →</span>
           </a>
-          <a class="social-card reveal" style="--delay: 120ms" href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">
+          <a class="social-card reveal" style="--delay: 120ms" href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" data-social="Facebook" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8.4v3h2.6V21h2.5Z" /></svg>
             <span class="platform">Facebook</span>
             <span class="handle">Beppeermejo</span>
-            <p>Notizie, presentazioni e incontri con chi legge le mie storie.</p>
-            <span class="go">Seguici su Facebook →</span>
+            <p data-i18n="social.fb.p">Notizie, presentazioni e incontri con chi legge le mie storie.</p>
+            <span class="go" data-i18n="social.fb.go">Seguici su Facebook →</span>
           </a>
-          <a class="social-card reveal" style="--delay: 240ms" href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">
+          <a class="social-card reveal" style="--delay: 240ms" href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" data-social="LinkedIn" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21h-4V9.75Z" /></svg>
             <span class="platform">LinkedIn</span>
             <span class="handle">giuseppezanoni</span>
-            <p>Il mio percorso da IT Manager e le riflessioni sul lavoro tecnico.</p>
-            <span class="go">Connettiti su LinkedIn →</span>
+            <p data-i18n="social.li.p">Il mio percorso da IT Manager e le riflessioni sul lavoro tecnico.</p>
+            <span class="go" data-i18n="social.li.go">Connettiti su LinkedIn →</span>
           </a>
         </div>
       </div>
@@ -869,9 +864,9 @@
     <section id="contatti" aria-labelledby="titolo-contatti">
       <div class="container contact-grid">
         <div>
-          <p class="eyebrow reveal">Contatti</p>
-          <h2 class="section-title reveal" id="titolo-contatti">Scrivi all'autore</h2>
-          <p class="reveal">Per domande, collaborazioni o incontri con i lettori, lascia un messaggio.</p>
+          <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contatti</p>
+          <h2 class="section-title reveal" id="titolo-contatti" data-i18n="contact.title">Scrivi all'autore</h2>
+          <p class="reveal" data-i18n="contact.p">Per domande, collaborazioni o incontri con i lettori, lascia un messaggio.</p>
         </div>
 
         <!-- MODULO CONTATTI
@@ -881,18 +876,18 @@
              imposta action="IL_TUO_ENDPOINT" e method="POST", poi elimina il blocco "form-contatti" nello script. -->
         <form class="contact-form reveal" id="form-contatti" aria-describedby="form-stato">
           <div class="field">
-            <label for="nome">Nome</label>
+            <label for="nome" data-i18n="contact.name">Nome</label>
             <input type="text" id="nome" name="nome" autocomplete="name" required />
           </div>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email" data-i18n="contact.email">Email</label>
             <input type="email" id="email" name="email" autocomplete="email" required />
           </div>
           <div class="field">
-            <label for="messaggio">Messaggio</label>
+            <label for="messaggio" data-i18n="contact.message">Messaggio</label>
             <textarea id="messaggio" name="messaggio" required></textarea>
           </div>
-          <button type="submit" class="btn btn-gold" aria-label="Invia il messaggio">Invia messaggio</button>
+          <button type="submit" class="btn btn-gold" data-i18n="contact.send">Invia messaggio</button>
           <p class="form-status" id="form-stato" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -905,16 +900,18 @@
        ========================================================== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="anno">2026</span> Giuseppe Zanoni. Tutti i diritti riservati.</p>
+      <p>© <span id="anno">2026</span> Giuseppe Zanoni. <span data-i18n="footer.rights">Tutti i diritti riservati.</span></p>
 
-      <nav class="footer-social" aria-label="Profili social">
-        <a href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">Instagram</a>
-        <a href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">Facebook</a>
-        <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">LinkedIn</a>
-        <a href="curriculum.html" aria-label="Curriculum professionale di Giuseppe Zanoni">Curriculum</a>
+      <nav class="footer-social" data-i18n-aria="footer.socialNav" aria-label="Profili social">
+        <a href="https://www.instagram.com/giuseppezanoni.it/" target="_blank" rel="noopener" data-social="Instagram" aria-label="Instagram di Giuseppe Zanoni (si apre in una nuova scheda)">Instagram</a>
+        <a href="https://www.facebook.com/Beppeermejo/" target="_blank" rel="noopener" data-social="Facebook" aria-label="Facebook di Giuseppe Zanoni (si apre in una nuova scheda)">Facebook</a>
+        <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener" data-social="LinkedIn" aria-label="LinkedIn di Giuseppe Zanoni (si apre in una nuova scheda)">LinkedIn</a>
+        <a href="curriculum.html" data-i18n="nav.cv" data-i18n-aria="footer.cvAria" aria-label="Curriculum professionale di Giuseppe Zanoni">Curriculum</a>
       </nav>
     </div>
   </footer>
+
+  <script src="js/i18n.js" defer></script>
 
   <script>
     /* ==========================================================
@@ -1033,43 +1030,20 @@
 
       // 8. Form contatti: apre il programma di posta con il messaggio già compilato
       //    verso 88.beppe@gmail.com. Quando colleghi Formspree o Aruba, elimina questo blocco.
+      //    I testi del messaggio seguono la lingua scelta (js/i18n.js).
       var form = document.getElementById('form-contatti');
       var stato = document.getElementById('form-stato');
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        var t = window.sitoI18n.testo;
         var nome = form.nome.value.trim();
         var email = form.email.value.trim();
         var messaggio = form.messaggio.value.trim();
-        var corpo = 'Nome: ' + nome + '\nEmail: ' + email + '\n\n' + messaggio;
+        var corpo = t('contact.bodyName') + nome + '\n' + t('contact.bodyEmail') + email + '\n\n' + messaggio;
         window.location.href = 'mailto:88.beppe@gmail.com'
-          + '?subject=' + encodeURIComponent('Messaggio dal sito - ' + nome)
+          + '?subject=' + encodeURIComponent(t('contact.subject') + nome)
           + '&body=' + encodeURIComponent(corpo);
-        stato.textContent = 'Si apre il tuo programma di posta con il messaggio pronto da inviare.';
-      });
-
-      // 9. Switch lingua sui libri disponibili in inglese (solo IT / EN)
-      document.querySelectorAll('.step .lang-switch').forEach(function (switcher) {
-        var card = switcher.closest('.step');
-        switcher.querySelectorAll('button').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var lang = btn.getAttribute('data-lang');
-            card.querySelectorAll('[data-it]').forEach(function (el) {
-              el.textContent = el.getAttribute('data-' + lang);
-            });
-            // Copertina e link Amazon cambiano con la lingua (solo dove previsto)
-            card.querySelectorAll('img[data-it-src]').forEach(function (img) {
-              img.src = img.getAttribute('data-' + lang + '-src');
-            });
-            card.querySelectorAll('a[data-it-href]').forEach(function (a) {
-              a.href = a.getAttribute('data-' + lang + '-href');
-            });
-            switcher.querySelectorAll('button').forEach(function (b) {
-              var attivo = b === btn;
-              b.classList.toggle('active', attivo);
-              b.setAttribute('aria-pressed', String(attivo));
-            });
-          });
-        });
+        stato.textContent = t('contact.status');
       });
     })();
   </script>

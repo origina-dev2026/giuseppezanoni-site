@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giuseppe Zanoni — IT Project Manager | Curriculum</title>
-  <meta name="description" content="Curriculum professionale di Giuseppe Zanoni, IT Project Manager e IT Manager: progetti IT, infrastrutture, ERP e digital transformation." />
+  <title data-i18n="meta.cvTitle">Giuseppe Zanoni — IT Project Manager | Curriculum</title>
+  <meta name="description" data-i18n-content="meta.cvDescription" content="Curriculum professionale di Giuseppe Zanoni, IT Project Manager e IT Manager: progetti IT, infrastrutture, ERP e digital transformation." />
   <link rel="canonical" href="https://giuseppezanoni.it/curriculum.html" />
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Giuseppe Zanoni — IT Project Manager | Curriculum" />
@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <script src="js/i18n.js" defer></script>
 
   <style>
     :root {
@@ -60,6 +62,28 @@
     .top-bar .container { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .top-bar a { text-decoration: none; font-weight: 600; }
     .top-bar a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .top-actions { display: flex; align-items: center; gap: 1.25rem; }
+
+    .lang-picker {
+      display: inline-flex;
+      flex-shrink: 0;
+      border: 1px solid var(--laguna);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .lang-picker button {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.7rem;
+      border: 0;
+      background: #fff;
+      color: var(--laguna);
+      cursor: pointer;
+    }
+    .lang-picker button.active { background: var(--laguna); color: #fff; }
+    .lang-picker button:focus-visible { outline-offset: -3px; }
 
     .hero { padding: 5rem 0 3.5rem; background: linear-gradient(180deg, #fdfbf6, #eaf0f3); }
     .eyebrow {
@@ -129,60 +153,67 @@
 
   <div class="top-bar">
     <div class="container">
-      <a href="index.html">← Torna al sito dell'autore</a>
-      <a href="index.html#contatti">Contatti</a>
+      <a href="index.html" data-i18n="cvp.back">← Torna al sito dell'autore</a>
+      <div class="top-actions">
+        <div class="lang-picker" role="group" aria-label="Language · Lingua · Idioma">
+          <button type="button" class="active" aria-pressed="true" data-set-lang="it">IT</button>
+          <button type="button" aria-pressed="false" data-set-lang="en">EN</button>
+          <button type="button" aria-pressed="false" data-set-lang="es">ES</button>
+        </div>
+        <a href="index.html#contatti" data-i18n="nav.contact">Contatti</a>
+      </div>
     </div>
   </div>
 
   <header class="hero">
     <div class="container">
-      <p class="eyebrow">Curriculum professionale</p>
+      <p class="eyebrow" data-i18n="cvp.eyebrow">Curriculum professionale</p>
       <h1>Giuseppe Zanoni</h1>
       <p class="role">IT Project Manager · IT Manager</p>
-      <p class="summary">Mirano (VE) · Consulente e IT Manager con oltre dieci anni di esperienza nella gestione di progetti IT e infrastrutture in aziende strutturate e multi-sede.</p>
-      <a class="btn btn-gold" href="cv-giuseppe-zanoni.pdf" download>Scarica il CV (PDF)</a>
-      <a class="btn btn-ghost" href="index.html#contatti">Contattami</a>
+      <p class="summary" data-i18n="cvp.summary">Mirano (VE) · Consulente e IT Manager con oltre dieci anni di esperienza nella gestione di progetti IT e infrastrutture in aziende strutturate e multi-sede.</p>
+      <a class="btn btn-gold" href="cv-giuseppe-zanoni.pdf" download data-i18n="cvp.download">Scarica il CV (PDF)</a>
+      <a class="btn btn-ghost" href="index.html#contatti" data-i18n="cvp.contactBtn">Contattami</a>
     </div>
   </header>
 
   <section aria-labelledby="titolo-profilo">
     <div class="container">
-      <h2 class="section-title" id="titolo-profilo">Profilo</h2>
-      <p>Coordino progetti di evoluzione tecnologica e digital transformation dall'analisi dei requisiti al go-live, gestendo stakeholder interni, fornitori e partner tecnologici nel rispetto di tempi, budget, SLA e KPI.</p>
-      <p>Unisco una solida base tecnica (infrastruttura, sistemi, reti, sicurezza) alla capacità di fare da ponte tra IT e funzioni di business. Residente in Veneto, automunito (patente B).</p>
+      <h2 class="section-title" id="titolo-profilo" data-i18n="cvp.profile">Profilo</h2>
+      <p data-i18n="cvp.p1">Coordino progetti di evoluzione tecnologica e digital transformation dall'analisi dei requisiti al go-live, gestendo stakeholder interni, fornitori e partner tecnologici nel rispetto di tempi, budget, SLA e KPI.</p>
+      <p data-i18n="cvp.p2">Unisco una solida base tecnica (infrastruttura, sistemi, reti, sicurezza) alla capacità di fare da ponte tra IT e funzioni di business. Residente in Veneto, automunito (patente B).</p>
     </div>
   </section>
 
   <section class="alt" aria-labelledby="titolo-competenze">
     <div class="container">
-      <h2 class="section-title" id="titolo-competenze">Competenze chiave</h2>
+      <h2 class="section-title" id="titolo-competenze" data-i18n="cvp.skills">Competenze chiave</h2>
       <ul class="skills">
-        <li>Project management IT (end-to-end)</li>
-        <li>Analisi dei requisiti e specifiche funzionali</li>
-        <li>Gestione di stakeholder, fornitori e partner</li>
-        <li>Pianificazione di tempi, budget e risorse</li>
-        <li>Gestione dei rischi di progetto</li>
+        <li data-i18n="cvp.sk1">Project management IT (end-to-end)</li>
+        <li data-i18n="cvp.sk2">Analisi dei requisiti e specifiche funzionali</li>
+        <li data-i18n="cvp.sk3">Gestione di stakeholder, fornitori e partner</li>
+        <li data-i18n="cvp.sk4">Pianificazione di tempi, budget e risorse</li>
+        <li data-i18n="cvp.sk5">Gestione dei rischi di progetto</li>
         <li>ERP Mago .N e CPQ</li>
-        <li>Digital transformation · Industry 4.0/5.0</li>
-        <li>ITSM e ticketing (Jira, ServiceNow, Confluence)</li>
-        <li>Sistemi Windows/Linux, reti, cloud e on-premise</li>
-        <li>Cybersecurity e GDPR</li>
-        <li>Coordinamento e formazione di team tecnici</li>
+        <li data-i18n="cvp.sk7">Digital transformation · Industry 4.0/5.0</li>
+        <li data-i18n="cvp.sk8">ITSM e ticketing (Jira, ServiceNow, Confluence)</li>
+        <li data-i18n="cvp.sk9">Sistemi Windows/Linux, reti, cloud e on-premise</li>
+        <li data-i18n="cvp.sk10">Cybersecurity e GDPR</li>
+        <li data-i18n="cvp.sk11">Coordinamento e formazione di team tecnici</li>
       </ul>
     </div>
   </section>
 
   <section aria-labelledby="titolo-esperienza">
     <div class="container">
-      <h2 class="section-title" id="titolo-esperienza">Esperienza professionale</h2>
+      <h2 class="section-title" id="titolo-esperienza" data-i18n="cvp.experience">Esperienza professionale</h2>
 
       <article class="exp">
-        <h3>Consulente IT</h3>
-        <p class="meta">Comunicagroup S.r.l., Treviso · 2025 – presente · Agenzia di multiservizi informatici e telecomunicazioni</p>
+        <h3 data-i18n="cvp.j1.title">Consulente IT</h3>
+        <p class="meta" data-i18n="cvp.j1.meta">Comunicagroup S.r.l., Treviso · 2025 – presente · Agenzia di multiservizi informatici e telecomunicazioni</p>
         <ul>
-          <li>Gestione e sviluppo di progetti ICT e di soluzioni informatiche e di telecomunicazione per aziende clienti.</li>
-          <li>Analisi delle esigenze dei clienti e traduzione in requisiti e specifiche; coordinamento di fornitori e partner tecnologici.</li>
-          <li>Supporto sistemistico su infrastrutture, reti e sicurezza, con attenzione a tempi, costi e continuità dei servizi.</li>
+          <li data-i18n="cvp.j1.b1">Gestione e sviluppo di progetti ICT e di soluzioni informatiche e di telecomunicazione per aziende clienti.</li>
+          <li data-i18n="cvp.j1.b2">Analisi delle esigenze dei clienti e traduzione in requisiti e specifiche; coordinamento di fornitori e partner tecnologici.</li>
+          <li data-i18n="cvp.j1.b3">Supporto sistemistico su infrastrutture, reti e sicurezza, con attenzione a tempi, costi e continuità dei servizi.</li>
         </ul>
       </article>
 
@@ -190,9 +221,9 @@
         <h3>IT Manager</h3>
         <p class="meta">GammaPlastic S.r.l., Limena (PD) · 2024 – 2025</p>
         <ul>
-          <li>Coordinamento di progetti di digitalizzazione (implementazione ERP Mago .N e CPQ) dall'analisi dei requisiti al go-live, con gestione di stakeholder interni e fornitori esterni.</li>
-          <li>Governance di tempi, budget IT e contrattualistica con partner; gestione di infrastruttura, sicurezza, backup e continuità operativa.</li>
-          <li>Guida di iniziative Industry 4.0/5.0 a supporto di produzione e supply chain.</li>
+          <li data-i18n="cvp.j2.b1">Coordinamento di progetti di digitalizzazione (implementazione ERP Mago .N e CPQ) dall'analisi dei requisiti al go-live, con gestione di stakeholder interni e fornitori esterni.</li>
+          <li data-i18n="cvp.j2.b2">Governance di tempi, budget IT e contrattualistica con partner; gestione di infrastruttura, sicurezza, backup e continuità operativa.</li>
+          <li data-i18n="cvp.j2.b3">Guida di iniziative Industry 4.0/5.0 a supporto di produzione e supply chain.</li>
         </ul>
       </article>
 
@@ -200,17 +231,17 @@
         <h3>IT Manager</h3>
         <p class="meta">Rubensluciano S.p.A., Strà (VE) · 2022 – 2024</p>
         <ul>
-          <li>Gestione di progetti infrastrutturali e migrazioni di sistema (Active Directory via LDAP, MDM, mail provider) per sede e filiali.</li>
-          <li>Coordinamento fornitori e gestione del ticketing (Jira, Confluence, Odoo); amministrazione di Google Workspace e document management.</li>
+          <li data-i18n="cvp.j3.b1">Gestione di progetti infrastrutturali e migrazioni di sistema (Active Directory via LDAP, MDM, mail provider) per sede e filiali.</li>
+          <li data-i18n="cvp.j3.b2">Coordinamento fornitori e gestione del ticketing (Jira, Confluence, Odoo); amministrazione di Google Workspace e document management.</li>
         </ul>
       </article>
 
       <article class="exp">
-        <h3>ICT Administrator</h3>
+        <h3 data-i18n="cvp.j4.title">ICT Administrator</h3>
         <p class="meta">Kering Eyewear S.p.A., Padova · 2014 – 2022</p>
         <ul>
-          <li>Gestione dell'infrastruttura IT corporate e dei relativi progetti in un contesto internazionale e strutturato.</li>
-          <li>IT service management e ticketing (ServiceNow, Jira, Confluence); amministrazione console (SCCM, Active Directory, Jamf, Airwatch); budget IT in SAP e coordinamento del team.</li>
+          <li data-i18n="cvp.j4.b1">Gestione dell'infrastruttura IT corporate e dei relativi progetti in un contesto internazionale e strutturato.</li>
+          <li data-i18n="cvp.j4.b2">IT service management e ticketing (ServiceNow, Jira, Confluence); amministrazione console (SCCM, Active Directory, Jamf, Airwatch); budget IT in SAP e coordinamento del team.</li>
         </ul>
       </article>
 
@@ -218,7 +249,7 @@
         <h3>iMac Manager</h3>
         <p class="meta">Safilo S.p.A., Padova · 2012 – 2014</p>
         <ul>
-          <li>Supporto tecnico specialistico (Apple) e gestione dei sistemi informativi.</li>
+          <li data-i18n="cvp.j5.b1">Supporto tecnico specialistico (Apple) e gestione dei sistemi informativi.</li>
         </ul>
       </article>
     </div>
@@ -226,11 +257,11 @@
 
   <section class="alt" aria-labelledby="titolo-formazione">
     <div class="container">
-      <h2 class="section-title" id="titolo-formazione">Lingue</h2>
-      <ul class="skills" aria-label="Lingue">
-        <li>Italiano (madrelingua)</li>
-        <li>Inglese (C1)</li>
-        <li>Spagnolo (B1)</li>
+      <h2 class="section-title" id="titolo-formazione" data-i18n="cvp.langs">Lingue</h2>
+      <ul class="skills" aria-label="Lingue" data-i18n-aria="cvp.langs">
+        <li data-i18n="cvp.lang1">Italiano (madrelingua)</li>
+        <li data-i18n="cvp.lang2">Inglese (C1)</li>
+        <li data-i18n="cvp.lang3">Spagnolo (B1)</li>
       </ul>
     </div>
   </section>
@@ -238,7 +269,7 @@
   <footer class="site-footer">
     <div class="container">
       <p>© <span id="anno">2026</span> Giuseppe Zanoni</p>
-      <p><a href="index.html#contatti">Contatti</a> · <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p><a href="index.html#contatti" data-i18n="nav.contact">Contatti</a> · <a href="https://www.linkedin.com/in/giuseppezanoni/" target="_blank" rel="noopener">LinkedIn</a></p>
     </div>
   </footer>
 
